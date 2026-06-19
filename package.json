@@ -1,10 +1,34 @@
 {
-  "name": "react-hook-indexeddb",
+  "name": "react-indexeddb-hook",
   "version": "1.0.0",
-  "description": "Reusable custom React hook to work with the IndexedDB in modern browsers. Mainly to run CRUD operations, supported by some utility functions.",
-  "main": "index.js",
+  "description": "Reusable custom React hook for IndexedDB in modern browsers.",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "rm -rf dist",
+    "build": "tsup index.ts --format esm,cjs --dts --clean",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run clean && npm run build && npm run typecheck",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "repository": {
     "type": "git",
@@ -26,10 +50,24 @@
     "url": "https://github.com/fabianmarcus/react-indexeddb-hook/issues"
   },
   "homepage": "https://github.com/fabianmarcus/react-indexeddb-hook#readme",
-  "dependencies": {
-    "react": "^19.2.4"
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "peerDependenciesMeta": {
+    "react-dom": {
+      "optional": true
+    }
   },
   "devDependencies": {
-    "@types/react": "^19.2.10"
+    "@testing-library/react": "^16.3.0",
+    "@types/react": "^19.2.10",
+    "fake-indexeddb": "^6.2.2",
+    "jsdom": "^26.1.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "tsup": "^8.3.5",
+    "typescript": "^5.9.2",
+    "vitest": "^3.2.4"
   }
 }
