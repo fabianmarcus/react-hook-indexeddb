@@ -1,0 +1,35 @@
+{
+  "name": "react-hook-indexeddb",
+  "version": "1.0.0",
+  "description": "Reusable custom React hook to work with the IndexedDB in modern browsers. Mainly to run CRUD operations, supported by some utility functions.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fabianmarcus/react-indexeddb-hook.git"
+  },
+  "keywords": [
+    "react",
+    "hook",
+    "indexeddb",
+    "localstorage",
+    "local",
+    "browser",
+    "custom",
+    "hook"
+  ],
+  "author": "Fabian Marcus <dev@fabian-marcus.de>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fabianmarcus/react-indexeddb-hook/issues"
+  },
+  "homepage": "https://github.com/fabianmarcus/react-indexeddb-hook#readme",
+  "dependencies": {
+    "react": "^19.2.4"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.10"
+  }
+}
