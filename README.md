@@ -11,12 +11,6 @@ This package is browser-only. It is not designed to run in Node.js environments.
 
 ## Install
 
-From npm:
-
-```bash
-npm install react-indexeddb-hook
-```
-
 From GitHub Packages:
 
 ```bash
