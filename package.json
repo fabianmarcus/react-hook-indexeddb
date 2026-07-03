@@ -1,0 +1,74 @@
+{
+  "name": "@fabianmarcus/react-indexeddb-hook",
+  "version": "1.0.0",
+  "description": "Reusable custom React hook for IndexedDB in modern browsers.",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "clean": "rm -rf dist",
+    "build": "tsdown index.ts --format esm,cjs --dts --clean",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run clean && npm run build && npm run typecheck",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fabianmarcus/react-indexeddb-hook.git"
+  },
+  "keywords": [
+    "react",
+    "hook",
+    "indexeddb",
+    "localstorage",
+    "local",
+    "browser",
+    "custom",
+    "hook"
+  ],
+  "author": "Fabian Marcus <dev@fabian-marcus.de>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fabianmarcus/react-indexeddb-hook/issues"
+  },
+  "homepage": "https://github.com/fabianmarcus/react-indexeddb-hook#readme",
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "peerDependenciesMeta": {
+    "react-dom": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@testing-library/react": "^16.3.0",
+    "@types/react": "^19.2.10",
+    "fake-indexeddb": "^6.2.2",
+    "jsdom": "^26.1.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "tsdown": "^0.12.9",
+    "typescript": "^5.9.2",
+    "vitest": "^3.2.4"
+  }
+}
