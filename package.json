@@ -1,5 +1,5 @@
 {
-  "name": "react-indexeddb-hook",
+  "name": "@fabianmarcus/react-indexeddb-hook",
   "version": "1.0.0",
   "description": "Reusable custom React hook for IndexedDB in modern browsers.",
   "type": "module",
@@ -28,7 +28,8 @@
     "test:watch": "vitest"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://npm.pkg.github.com"
   },
   "repository": {
     "type": "git",

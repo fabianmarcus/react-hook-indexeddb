@@ -11,8 +11,36 @@ This package is browser-only. It is not designed to run in Node.js environments.
 
 ## Install
 
+From npm:
+
 ```bash
 npm install react-indexeddb-hook
+```
+
+From GitHub Packages:
+
+```bash
+npm install @fabianmarcus/react-indexeddb-hook
+```
+
+If your project does not already use GitHub Packages, add an `.npmrc` with the scope mapping:
+
+```ini
+@fabianmarcus:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=GITHUB_TOKEN
+```
+
+Replace `GITHUB_TOKEN` with a personal access token that has package read access.
+
+## Publish To GitHub Packages
+
+The repository contains a GitHub Actions workflow in `.github/workflows/publish-package.yml`.
+It publishes the package automatically when you create a GitHub Release, or manually via `workflow_dispatch`.
+
+For a local publish, authenticate npm against GitHub Packages and run:
+
+```bash
+npm publish
 ```
 
 ## Basic Usage
