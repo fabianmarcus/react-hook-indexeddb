@@ -8,10 +8,8 @@ import { ID_UUID_PREFIX } from "../constants/ID_UUID_PREFIX";
  * @returns {boolean} true if the ID was generated locally, otherwise false.
  */
 export function isLocalId(id: string, prefix?: string) {
-  const isUUID = (id: string) => ID_REGEX.test(id);
   const prefixToUse = typeof prefix === "string" ? prefix : ID_UUID_PREFIX;
-  return (
-    id.startsWith(`${prefixToUse}`) &&
-    isUUID(id.replace(new RegExp(`^${prefixToUse}`), ""))
-  );
+  if (!id.startsWith(prefixToUse)) return false;
+  const uuidPart = id.slice(prefixToUse.length);
+  return ID_REGEX.test(uuidPart);
 }
