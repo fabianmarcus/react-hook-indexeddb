@@ -104,6 +104,8 @@ export type HookProps = {
   objectStore: string;
   allObjectStores: string[];
   indexes?: IndexedDbIndex[];
+  dbName?: string;    // Default: "app-database"
+  dbVersion?: number; // Default: 1
 };
 
 export type UseIndexedDb<T> = {
