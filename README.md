@@ -41,7 +41,7 @@ npm publish
 
 ```tsx
 import { useEffect } from "react";
-import { useIndexedDb } from "react-indexeddb-hook";
+import { useIndexedDb } from "@fabianmarcus/react-indexeddb-hook";
 
 type Todo = {
   id: string;
