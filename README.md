@@ -125,7 +125,7 @@ export type UseIndexedDb<T> = {
   queryError: Error | null;
   saveItem: (q: T) => Promise<T>;
   removeItem: (id: string) => Promise<string>;
-  updateItem: (q: T, id: string) => Promise<T>;
+  updateItem: (q: T) => Promise<T>;
   loadItems: (filter?: (item: T) => boolean) => Promise<T[]>;
   isLocalId: (id: string, prefix?: string) => boolean;
   generateLocalId: (prefix?: string) => string;
