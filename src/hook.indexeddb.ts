@@ -220,7 +220,7 @@ export function useIndexedDb<T extends { id: string }>(props: HookProps) {
             reject(error);
           };
         } catch (cause) {
-          // Synchroner Fehler, z. B. Index oder Object Store existiert nicht
+          // Synchronous error, e.g. index or object store does not exist
           const error = Object.assign(
             new Error("Failed to fetch items by index from IndexedDB"),
             { cause },
