@@ -1,11 +1,9 @@
 import "fake-indexeddb/auto";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { act, cleanup, renderHook, waitFor } from "@testing-library/react";
-import {
-  generateLocalId,
-  isLocalId,
-  useIndexedDb,
-} from "../src/hook.indexeddb";
+import { generateLocalId } from "../src/functions/generateLocalId";
+import { isLocalId } from "../src/functions/isLocalId";
+import { useIndexedDb } from "../src/hook.indexeddb";
 
 type Todo = {
   id: string;
@@ -13,7 +11,7 @@ type Todo = {
   category: string;
 };
 
-const DB_NAME = "mal-ehrlich-database";
+const DB_NAME = "my-database";
 
 function deleteDb() {
   return new Promise<void>((resolve, reject) => {
