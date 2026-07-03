@@ -21,7 +21,7 @@
   "sideEffects": false,
   "scripts": {
     "clean": "rm -rf dist",
-    "build": "tsup index.ts --format esm,cjs --dts --clean",
+    "build": "tsdown index.ts --format esm,cjs --dts --clean",
     "typecheck": "tsc --noEmit",
     "prepublishOnly": "npm run clean && npm run build && npm run typecheck",
     "test": "vitest run",
@@ -67,7 +67,7 @@
     "jsdom": "^26.1.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
-    "tsup": "^8.3.5",
+    "tsdown": "^0.12.9",
     "typescript": "^5.9.2",
     "vitest": "^3.2.4"
   }
