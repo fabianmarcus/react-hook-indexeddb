@@ -9,4 +9,6 @@ export type HookProps = {
   objectStore: string;
   allObjectStores: string[];
   indexes?: IndexedDbIndex[];
+  dbName?: string;
+  dbVersion?: number;
 };

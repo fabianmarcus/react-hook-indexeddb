@@ -2,6 +2,7 @@ import { isLocalId } from "./functions/isLocalId";
 import { ERROR_NO_DB } from "./constants/ERROR_NO_DB";
 import { useCallback, useEffect, useState } from "react";
 import { generateLocalId } from "./functions/generateLocalId";
+import { DEFAULT_DB_NAME } from "./constants/DEFAULT_DB_NAME";
 
 import type { HookProps } from "./types/HookProps";
 import type { UseIndexedDb } from "./types/UseIndexedDb";
@@ -10,10 +11,7 @@ import type { IndexedDbIndex } from "./types/IndexedDbIndex";
 //--- Hook -----
 
 export function useIndexedDb<T extends { id: string }>(props: HookProps) {
-  const { allObjectStores, objectStore, indexes } = props;
-
-  const dbVersion = 1;
-  const dbName = "my-database";
+  const { allObjectStores, objectStore, indexes, dbName = DEFAULT_DB_NAME, dbVersion = 1 } = props;
 
   //--- States -----
 

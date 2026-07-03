@@ -11,7 +11,7 @@ type Todo = {
   category: string;
 };
 
-const DB_NAME = "my-database";
+const DB_NAME = "test-database";
 
 function deleteDb() {
   return new Promise<void>((resolve, reject) => {
@@ -64,6 +64,7 @@ describe("useIndexedDb", () => {
       useIndexedDb<Todo>({
         objectStore: "todos",
         allObjectStores,
+        dbName: DB_NAME,
       }),
     );
 
@@ -88,6 +89,7 @@ describe("useIndexedDb", () => {
       useIndexedDb<Todo>({
         objectStore: "todos",
         allObjectStores,
+        dbName: DB_NAME,
       }),
     );
 
@@ -139,6 +141,7 @@ describe("useIndexedDb", () => {
         objectStore: "todos",
         allObjectStores,
         indexes,
+        dbName: DB_NAME,
       }),
     );
 
