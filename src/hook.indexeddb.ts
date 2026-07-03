@@ -200,22 +200,33 @@ export function useIndexedDb<T extends { id: string }>(props: HookProps) {
         setQueryError(null);
         setIs((prev) => ({ ...prev, querying: true }));
 
-        const transaction = db.transaction(objectStore, "readonly");
-        const store = transaction.objectStore(objectStore);
-        const index = store.index(select.index.name);
-        const query = index.getAll(select.id);
+        try {
+          const transaction = db.transaction(objectStore, "readonly");
+          const store = transaction.objectStore(objectStore);
+          const index = store.index(select.index.name);
+          const query = index.getAll(select.id);
 
-        query.onsuccess = (ev) => {
-          const results = (ev.target as IDBRequest).result as T[];
-          setIs((prev) => ({ ...prev, querying: false }));
-          console.log(
-            `Fetched items by index "${select.index.name}" with id "${select.id}":`,
-            results,
-          );
-          resolve(results);
-        };
-        query.onerror = (ev) => {
-          const cause = (ev.target as IDBRequest).error;
+          query.onsuccess = (ev) => {
+            const results = (ev.target as IDBRequest).result as T[];
+            setIs((prev) => ({ ...prev, querying: false }));
+            console.log(
+              `Fetched items by index "${select.index.name}" with id "${select.id}":`,
+              results,
+            );
+            resolve(results);
+          };
+          query.onerror = (ev) => {
+            const cause = (ev.target as IDBRequest).error;
+            const error = Object.assign(
+              new Error("Failed to fetch items by index from IndexedDB"),
+              { cause },
+            );
+            setIs((prev) => ({ ...prev, querying: false }));
+            setQueryError(error);
+            reject(error);
+          };
+        } catch (cause) {
+          // Synchroner Fehler, z. B. Index oder Object Store existiert nicht
           const error = Object.assign(
             new Error("Failed to fetch items by index from IndexedDB"),
             { cause },
@@ -223,7 +234,7 @@ export function useIndexedDb<T extends { id: string }>(props: HookProps) {
           setIs((prev) => ({ ...prev, querying: false }));
           setQueryError(error);
           reject(error);
-        };
+        }
       });
     },
     [db, objectStore],
