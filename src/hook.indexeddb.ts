@@ -150,7 +150,7 @@ export function useIndexedDb<T extends { id: string }>(props: HookProps) {
   );
 
   const updateItem = useCallback(
-    (q: T, id: string) => {
+    (q: T) => {
       return new Promise<T>((resolve, reject) => {
         if (!db) {
           setQueryError(ERROR_NO_DB);
@@ -168,7 +168,7 @@ export function useIndexedDb<T extends { id: string }>(props: HookProps) {
         query.onsuccess = () => {
           setItems((prev) => {
             if (!prev) return null;
-            return prev.map((item) => (item.id === id ? q : item));
+            return prev.map((item) => (item.id === q.id ? q : item));
           });
           setIs((prev) => ({ ...prev, saving: false }));
           console.log("Item updated locally:", q);

@@ -108,7 +108,7 @@ describe("useIndexedDb", () => {
     const updated: Todo = { ...item, title: "updated" };
 
     await act(async () => {
-      await result.current.updateItem(updated, item.id);
+      await result.current.updateItem(updated);
     });
 
     await act(async () => {
