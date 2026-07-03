@@ -262,17 +262,18 @@ export function useIndexedDb<T extends { id: string }>(props: HookProps) {
     };
     request.onupgradeneeded = (event) => {
       const database = (event.target as IDBOpenDBRequest).result;
-      for (const objectStore of allObjectStores) {
-        if (!database.objectStoreNames.contains(objectStore)) {
-          const store = database.createObjectStore(objectStore, {
+      for (const storeName of allObjectStores) {
+        if (!database.objectStoreNames.contains(storeName)) {
+          const store = database.createObjectStore(storeName, {
             keyPath: "id",
           });
-          if (indexes) {
+          // Indexes nur für den aktiven objectStore anlegen
+          if (storeName === objectStore && indexes) {
             indexes.forEach((index) => {
               store.createIndex(index.name, index.keyPath, index.options);
             });
           }
-          console.log(`Object store "${objectStore}" created in IndexedDB.`);
+          console.log(`Object store "${storeName}" created in IndexedDB.`);
         }
       }
     };
