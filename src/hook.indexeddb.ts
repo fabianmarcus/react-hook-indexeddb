@@ -35,12 +35,8 @@ export function useIndexedDb<T extends { id: string }>(props: HookProps) {
     (filter?: (item: T) => boolean) => {
       return new Promise<T[]>((resolve, reject) => {
         if (!db) {
-          console.info(
-            "IndexedDB with its stores hasn't been created yet. It has now.",
-          );
-          const initialResult = [] as T[];
-          setItems(initialResult);
-          resolve(initialResult);
+          setQueryError(ERROR_NO_DB);
+          reject(ERROR_NO_DB);
           return;
         }
         setQueryError(null);
@@ -281,7 +277,6 @@ export function useIndexedDb<T extends { id: string }>(props: HookProps) {
           console.log(`Object store "${objectStore}" created in IndexedDB.`);
         }
       }
-      setIs((prev) => ({ ...prev, initialized: true }));
     };
   }, [allObjectStores, objectStore, indexes]);
 
